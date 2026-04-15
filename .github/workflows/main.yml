@@ -13,13 +13,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Setup Node
-        uses: setup-node@v4
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
       
-      # Aquí le decimos a GitHub que trabaje dentro de 'parcial2'
       - name: Install and Build
         run: |
           npm install
@@ -29,7 +30,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './parcial2/dist' # GitHub buscará la carpeta dist aquí tras construir
+          path: './parcial2/dist'
 
   deploy:
     needs: build
